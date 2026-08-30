@@ -1,0 +1,17 @@
+#pragma kernel TransformVertexPositions
+
+float4x4 LocalToWorld;
+uint GpuVertexBufferStride;
+uint VertexCount;
+uint OutputVertexOffset;
+ByteAddressBuffer GpuVertexBuffer;
+RWStructuredBuffer<float3> OutputVertexBuffer;
+
+[numthreads(32, 1, 1)]
+void TransformVertexPositions(uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= VertexCount) return;
+
+    float3 localPosition = asfloat(GpuVertexBuffer.Load3(id.x * GpuVertexBufferStride));
+    OutputVertexBuffer[OutputVertexOffset + id.x] = mul(LocalToWorld, float4(localPosition, 1)).xyz;
+}

@@ -1,0 +1,25 @@
+{
+    "name": "CinematicCameraToolkit.CinemachineExtensions",
+    "rootNamespace": "CinematicCameraToolkit.CinemachineExtensions",
+    "references": [
+        "CinematicCameraToolkit",
+        "Unity.Cinemachine"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "CCT_CINEMACHINE_3"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.cinemachine",
+            "expression": "3.0.0",
+            "define": "CCT_CINEMACHINE_3"
+        }
+    ],
+    "noEngineReferences": false
+}
