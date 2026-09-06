@@ -1,6 +1,6 @@
 {
     "name": "CinematicCameraToolkit.CinemachineExtensions",
-    "rootNamespace": "CinematicCameraToolkit.CinemachineExtensions",
+    "rootNamespace": "CinematicCameraToolkit.Cinemachine",
     "references": [
         "CinematicCameraToolkit",
         "Unity.Cinemachine"
