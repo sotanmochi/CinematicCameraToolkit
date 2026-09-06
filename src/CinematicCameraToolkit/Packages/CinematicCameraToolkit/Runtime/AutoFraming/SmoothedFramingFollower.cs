@@ -25,10 +25,10 @@ namespace CinematicCameraToolkit.AutoFraming
         [SerializeField] private Camera _camera;
         [SerializeField] private Transform _referencePoint;
         [SerializeField] private List<Renderer> _targets = new();
-        [SerializeField] [Range(0f, 40f)] private float _marginLeft = 10f;
-        [SerializeField] [Range(0f, 40f)] private float _marginRight = 10f;
-        [SerializeField] [Range(0f, 40f)] private float _marginBottom = 10f;
-        [SerializeField] [Range(0f, 40f)] private float _marginTop = 10f;
+        [SerializeField] [Range(0f, 100f)] private float _marginLeft = 10f;
+        [SerializeField] [Range(0f, 100f)] private float _marginRight = 10f;
+        [SerializeField] [Range(0f, 100f)] private float _marginBottom = 10f;
+        [SerializeField] [Range(0f, 100f)] private float _marginTop = 10f;
         [SerializeField] private FramingAxisAlignment _horizontalAlignment = FramingAxisAlignment.Balanced;
         [SerializeField] private FramingAxisAlignment _verticalAlignment = FramingAxisAlignment.Balanced;
 
@@ -67,28 +67,34 @@ namespace CinematicCameraToolkit.AutoFraming
         public RenderTargetMargin CurrentMargin =>
             RenderTargetMargin.Percentage(_marginLeft, _marginRight, _marginBottom, _marginTop);
 
+        public void SetMargins(float left, float right, float bottom, float top)
+        {
+            (_marginLeft, _marginRight) = RenderTargetMarginLimits.ClampPair(left, right);
+            (_marginBottom, _marginTop) = RenderTargetMarginLimits.ClampPair(bottom, top);
+        }
+
         public float MarginLeft
         {
             get => _marginLeft;
-            set => _marginLeft = Mathf.Clamp(value, 0f, 40f);
+            set => _marginLeft = RenderTargetMarginLimits.ClampPercentage(value, _marginRight);
         }
 
         public float MarginRight
         {
             get => _marginRight;
-            set => _marginRight = Mathf.Clamp(value, 0f, 40f);
+            set => _marginRight = RenderTargetMarginLimits.ClampPercentage(value, _marginLeft);
         }
 
         public float MarginBottom
         {
             get => _marginBottom;
-            set => _marginBottom = Mathf.Clamp(value, 0f, 40f);
+            set => _marginBottom = RenderTargetMarginLimits.ClampPercentage(value, _marginTop);
         }
 
         public float MarginTop
         {
             get => _marginTop;
-            set => _marginTop = Mathf.Clamp(value, 0f, 40f);
+            set => _marginTop = RenderTargetMarginLimits.ClampPercentage(value, _marginBottom);
         }
 
         public FramingAxisAlignment HorizontalAlignment
@@ -161,8 +167,17 @@ namespace CinematicCameraToolkit.AutoFraming
             _solver = new SmoothedFramingSolver { Settings = _smoothingSettings };
         }
 
+        private void ClampMargins()
+        {
+            (_marginLeft, _marginRight) = RenderTargetMarginLimits.ClampPair(_marginLeft, _marginRight);
+            (_marginBottom, _marginTop) = RenderTargetMarginLimits.ClampPair(_marginBottom, _marginTop);
+        }
+
         private void OnValidate()
         {
+            // The Inspector writes the fields directly, so the setters never run.
+            ClampMargins();
+
             EnsureSmoothingSettingsInitialized();
             // Only apply preset values when the dropdown actually changed.
             if (_preset != _appliedPreset) ApplyPreset(_preset);
