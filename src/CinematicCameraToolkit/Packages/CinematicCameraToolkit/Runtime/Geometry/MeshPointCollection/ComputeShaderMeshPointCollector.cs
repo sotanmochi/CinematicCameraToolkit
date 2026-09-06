@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 using Unity.Profiling;
 #endif
 
-namespace CinematicCameraToolkit.AutoFraming
+namespace CinematicCameraToolkit
 {
     /// <summary>
     /// Reads skinned vertex positions from the GPU.
@@ -23,31 +23,31 @@ namespace CinematicCameraToolkit.AutoFraming
 
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
         private static readonly ProfilerMarker WriteWorldSpacePointsMarker =
-            new(ProfilerCategory.Scripts, "CCT.AutoFraming.ComputeShaderMeshPointCollector.WriteWorldSpacePoints");
+            new(ProfilerCategory.Scripts, "CCT.Geometry.ComputeShaderMeshPointCollector.WriteWorldSpacePoints");
 
         private static readonly ProfilerMarker CompleteReadbackMarker =
-            new(ProfilerCategory.Scripts, "CCT.AutoFraming.ComputeShaderMeshPointCollector.CompleteReadback");
+            new(ProfilerCategory.Scripts, "CCT.Geometry.ComputeShaderMeshPointCollector.CompleteReadback");
 
         private static readonly ProfilerMarker GetGpuLayoutMarker =
-            new(ProfilerCategory.Scripts, "CCT.AutoFraming.ComputeShaderMeshPointCollector.GetGpuLayout");
+            new(ProfilerCategory.Scripts, "CCT.Geometry.ComputeShaderMeshPointCollector.GetGpuLayout");
 
         private static readonly ProfilerMarker ScheduleReadbackMarker =
-            new(ProfilerCategory.Scripts, "CCT.AutoFraming.ComputeShaderMeshPointCollector.ScheduleReadback");
+            new(ProfilerCategory.Scripts, "CCT.Geometry.ComputeShaderMeshPointCollector.ScheduleReadback");
 
         private static readonly ProfilerMarker DispatchMarker =
-            new(ProfilerCategory.Scripts, "CCT.AutoFraming.ComputeShaderMeshPointCollector.Dispatch");
+            new(ProfilerCategory.Scripts, "CCT.Geometry.ComputeShaderMeshPointCollector.Dispatch");
 
         private static readonly ProfilerMarker RequestReadbackMarker =
-            new(ProfilerCategory.Scripts, "CCT.AutoFraming.ComputeShaderMeshPointCollector.RequestReadback");
+            new(ProfilerCategory.Scripts, "CCT.Geometry.ComputeShaderMeshPointCollector.RequestReadback");
 
         private static readonly ProfilerMarker CopyLatestPointsMarker =
-            new(ProfilerCategory.Scripts, "CCT.AutoFraming.ComputeShaderMeshPointCollector.CopyLatestPoints");
+            new(ProfilerCategory.Scripts, "CCT.Geometry.ComputeShaderMeshPointCollector.CopyLatestPoints");
 
         private static readonly ProfilerMarker CpuFallbackMarker =
-            new(ProfilerCategory.Scripts, "CCT.AutoFraming.ComputeShaderMeshPointCollector.CpuFallback");
+            new(ProfilerCategory.Scripts, "CCT.Geometry.ComputeShaderMeshPointCollector.CpuFallback");
 
         private static readonly ProfilerMarker ResizeBufferMarker =
-            new(ProfilerCategory.Scripts, "CCT.AutoFraming.ComputeShaderMeshPointCollector.ResizeBuffer");
+            new(ProfilerCategory.Scripts, "CCT.Geometry.ComputeShaderMeshPointCollector.ResizeBuffer");
 #endif
 
         public const string KernelName = "TransformVertexPositions";

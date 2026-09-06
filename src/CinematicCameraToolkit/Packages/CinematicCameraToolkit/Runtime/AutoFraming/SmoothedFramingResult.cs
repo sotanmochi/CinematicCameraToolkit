@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CinematicCameraToolkit.AutoFraming
+namespace CinematicCameraToolkit
 {
     public readonly struct SmoothedFramingResult
     {

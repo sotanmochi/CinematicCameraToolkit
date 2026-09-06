@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace CinematicCameraToolkit.AutoFraming
+namespace CinematicCameraToolkit
 {
     /// <summary>
     /// Serialized smoothing configuration shared by presets, components, and runtime filters.

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CinematicCameraToolkit.AutoFraming
+namespace CinematicCameraToolkit
 {
     /// <summary>
     /// 1D adaptive low-pass filter (1€ Filter; Casiez, Roussel, &amp; Vogel, CHI 2012).

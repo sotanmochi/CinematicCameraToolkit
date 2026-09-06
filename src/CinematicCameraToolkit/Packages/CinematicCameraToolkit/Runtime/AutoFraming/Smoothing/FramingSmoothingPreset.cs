@@ -1,6 +1,6 @@
 using System;
 
-namespace CinematicCameraToolkit.AutoFraming
+namespace CinematicCameraToolkit
 {
     public enum FramingSmoothingPreset
     {

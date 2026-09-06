@@ -1,33 +1,31 @@
 using System.Collections.Generic;
-using CinematicCameraToolkit.AutoFraming;
 using Unity.Cinemachine;
 using UnityEngine;
 
-namespace CinematicCameraToolkit.CinemachineExtensions
+namespace CinematicCameraToolkit.Cinemachine
 {
-    [AddComponentMenu("Cinemachine/Procedural/Extensions/Cinematic Auto Framing")]
+    [AddComponentMenu("Cinemachine/Procedural/Extensions/Cinematic Camera Toolkit/Cinemachine Auto Framing")]
     [ExecuteAlways]
     [SaveDuringPlay]
     [DisallowMultipleComponent]
-    public sealed class CinemachineAutoFramingExtension : CinemachineExtension
+    public sealed class CinemachineAutoFraming : CinemachineExtension
     {
         [SerializeField] private List<Renderer> _targets = new();
 
         [Header("Margins")]
-        [SerializeField] [Range(0f, 40f)] private float _marginLeft = 10f;
-        [SerializeField] [Range(0f, 40f)] private float _marginRight = 10f;
-        [SerializeField] [Range(0f, 40f)] private float _marginBottom = 10f;
-        [SerializeField] [Range(0f, 40f)] private float _marginTop = 10f;
+        [SerializeField] [Range(0f, 100f)] private float _marginLeft = 10f;
+        [SerializeField] [Range(0f, 100f)] private float _marginRight = 10f;
+        [SerializeField] [Range(0f, 100f)] private float _marginBottom = 10f;
+        [SerializeField] [Range(0f, 100f)] private float _marginTop = 10f;
 
         [Header("Alignment")]
-        [SerializeField] private FramingAxisAlignment _horizontalAlignment = FramingAxisAlignment.Balanced;
-        [SerializeField] private FramingAxisAlignment _verticalAlignment = FramingAxisAlignment.Balanced;
+        [SerializeField] private FramingAxisAlignment _horizontalAlignment = FramingAxisAlignment.CenterBetweenEdgeAnchors;
+        [SerializeField] private FramingAxisAlignment _verticalAlignment = FramingAxisAlignment.CenterBetweenEdgeAnchors;
 
         [Header("Smoothing")]
-        [SerializeField] private FramingSmoothingSettings _smoothingSettings = FramingSmoothingSettings.CreateDefault();
-
-        [Header("Preset")]
         [SerializeField] private FramingSmoothingPreset _preset = FramingSmoothingPreset.Standard;
+
+        [SerializeField] private FramingSmoothingSettings _smoothingSettings = FramingSmoothingSettings.CreateDefault();
 
         [SerializeField] [HideInInspector]
         private FramingSmoothingPreset _appliedPreset = FramingSmoothingPreset.Standard;
@@ -39,28 +37,34 @@ namespace CinematicCameraToolkit.CinemachineExtensions
         public RenderTargetMargin CurrentMargin =>
             RenderTargetMargin.Percentage(_marginLeft, _marginRight, _marginBottom, _marginTop);
 
+        public void SetMargins(float left, float right, float bottom, float top)
+        {
+            (_marginLeft, _marginRight) = RenderTargetMarginLimits.ClampPair(left, right);
+            (_marginBottom, _marginTop) = RenderTargetMarginLimits.ClampPair(bottom, top);
+        }
+
         public float MarginLeft
         {
             get => _marginLeft;
-            set => _marginLeft = Mathf.Clamp(value, 0f, 40f);
+            set => _marginLeft = RenderTargetMarginLimits.ClampPercentage(value, _marginRight);
         }
 
         public float MarginRight
         {
             get => _marginRight;
-            set => _marginRight = Mathf.Clamp(value, 0f, 40f);
+            set => _marginRight = RenderTargetMarginLimits.ClampPercentage(value, _marginLeft);
         }
 
         public float MarginBottom
         {
             get => _marginBottom;
-            set => _marginBottom = Mathf.Clamp(value, 0f, 40f);
+            set => _marginBottom = RenderTargetMarginLimits.ClampPercentage(value, _marginTop);
         }
 
         public float MarginTop
         {
             get => _marginTop;
-            set => _marginTop = Mathf.Clamp(value, 0f, 40f);
+            set => _marginTop = RenderTargetMarginLimits.ClampPercentage(value, _marginBottom);
         }
 
         public FramingAxisAlignment HorizontalAlignment
@@ -127,8 +131,17 @@ namespace CinematicCameraToolkit.CinemachineExtensions
             _appliedPreset = preset;
         }
 
+        private void ClampMargins()
+        {
+            (_marginLeft, _marginRight) = RenderTargetMarginLimits.ClampPair(_marginLeft, _marginRight);
+            (_marginBottom, _marginTop) = RenderTargetMarginLimits.ClampPair(_marginBottom, _marginTop);
+        }
+
         private void OnValidate()
         {
+            // The Inspector writes the fields directly, so the setters never run.
+            ClampMargins();
+
             // Only apply preset values when the dropdown actually changed.
             if (_preset != _appliedPreset) ApplyPreset(_preset);
         }

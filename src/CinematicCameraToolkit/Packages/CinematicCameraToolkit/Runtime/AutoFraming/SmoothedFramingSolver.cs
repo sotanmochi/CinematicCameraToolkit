@@ -5,7 +5,7 @@ using UnityEngine;
 using Unity.Profiling;
 #endif
 
-namespace CinematicCameraToolkit.AutoFraming
+namespace CinematicCameraToolkit
 {
     public sealed class SmoothedFramingSolver : IDisposable
     {

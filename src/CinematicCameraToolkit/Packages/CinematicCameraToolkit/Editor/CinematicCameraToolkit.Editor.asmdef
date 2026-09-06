@@ -1,0 +1,18 @@
+{
+    "name": "CinematicCameraToolkit.Editor",
+    "rootNamespace": "CinematicCameraToolkit.Editor",
+    "references": [
+        "CinematicCameraToolkit"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

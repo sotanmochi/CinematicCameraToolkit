@@ -1,6 +1,6 @@
 namespace CinematicCameraToolkit
 {
-    public static class UnityObjectDestroyer
+    internal static class UnityObjectDestroyer
     {
         public static void DestroyRuntimeOrEditor(UnityEngine.Object o)
         {
