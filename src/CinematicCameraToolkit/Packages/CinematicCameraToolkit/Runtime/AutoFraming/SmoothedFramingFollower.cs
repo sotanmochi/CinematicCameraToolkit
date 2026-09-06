@@ -222,13 +222,22 @@ namespace CinematicCameraToolkit
         private bool TryPrepareTick(out RenderTargetMargin margin)
         {
             margin = default;
-            if (_solver == null) return false;
-            if (_camera == null || _referencePoint == null) return false;
-            if (_targets == null || _targets.Count == 0) return false;
-            if (_camera.pixelWidth <= 0 || _camera.pixelHeight <= 0) return false;
+            if (_solver == null) return ReportTickPreparationFailure("Solver is not initialized.");
+            if (_camera == null) return ReportTickPreparationFailure("Camera is not assigned.");
+            if (_referencePoint == null) return ReportTickPreparationFailure("Reference Point is not assigned.");
+            if (_targets == null || _targets.Count == 0)
+                return ReportTickPreparationFailure("No target renderers are assigned.");
+            if (_camera.pixelWidth <= 0 || _camera.pixelHeight <= 0)
+                return ReportTickPreparationFailure("Camera render size is zero.");
 
             margin = CurrentMargin;
             return true;
+        }
+
+        private bool ReportTickPreparationFailure(string reason)
+        {
+            Debug.LogWarning($"{nameof(SmoothedFramingFollower)} cannot update: {reason}", this);
+            return false;
         }
 
         private void EnsureSmoothingSettingsInitialized()
