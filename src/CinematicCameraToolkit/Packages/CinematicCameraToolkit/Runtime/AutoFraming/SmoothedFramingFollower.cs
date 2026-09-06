@@ -29,8 +29,8 @@ namespace CinematicCameraToolkit
         [SerializeField] [Range(0f, 100f)] private float _marginRight = 10f;
         [SerializeField] [Range(0f, 100f)] private float _marginBottom = 10f;
         [SerializeField] [Range(0f, 100f)] private float _marginTop = 10f;
-        [SerializeField] private FramingAxisAlignment _horizontalAlignment = FramingAxisAlignment.Balanced;
-        [SerializeField] private FramingAxisAlignment _verticalAlignment = FramingAxisAlignment.Balanced;
+        [SerializeField] private FramingAxisAlignment _horizontalAlignment = FramingAxisAlignment.CenterBetweenEdgeAnchors;
+        [SerializeField] private FramingAxisAlignment _verticalAlignment = FramingAxisAlignment.CenterBetweenEdgeAnchors;
 
         [Header("Smoothing")]
         [SerializeField]

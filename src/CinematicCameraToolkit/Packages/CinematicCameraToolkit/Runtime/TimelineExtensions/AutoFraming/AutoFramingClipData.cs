@@ -29,8 +29,8 @@ namespace CinematicCameraToolkit.Timeline
                 MarginRight = 10f,
                 MarginBottom = 10f,
                 MarginTop = 10f,
-                HorizontalAlignment = FramingAxisAlignment.Balanced,
-                VerticalAlignment = FramingAxisAlignment.Balanced,
+                HorizontalAlignment = FramingAxisAlignment.CenterBetweenEdgeAnchors,
+                VerticalAlignment = FramingAxisAlignment.CenterBetweenEdgeAnchors,
                 Smoothing = FramingSmoothingSettings.CreateDefault(),
             };
         }

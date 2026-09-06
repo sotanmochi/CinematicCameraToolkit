@@ -206,10 +206,10 @@ namespace CinematicCameraToolkit
             NdcBounds ndcBounds, float kHorizontal, float kVertical, FramingAlignment alignment)
         {
             var dHorizontal = ComputeFramingDistance(framingEdgeConstraints.Left, framingEdgeConstraints.Right,
-                ndcBounds.Left, ndcBounds.Right, kHorizontal);
+                ndcBounds.Left, ndcBounds.Right, kHorizontal, alignment.Horizontal);
 
             var dVertical = ComputeFramingDistance(framingEdgeConstraints.Bottom, framingEdgeConstraints.Top,
-                ndcBounds.Bottom, ndcBounds.Top, kVertical);
+                ndcBounds.Bottom, ndcBounds.Top, kVertical, alignment.Vertical);
 
             var framingDistance = Math.Max(dHorizontal, dVertical);
 
@@ -225,8 +225,17 @@ namespace CinematicCameraToolkit
         }
 
         private static float ComputeFramingDistance(
-            float edgeConstraintMin, float edgeConstraintMax, float ndcMin, float ndcMax, float projectionScale)
+            float edgeConstraintMin, float edgeConstraintMax, float ndcMin, float ndcMax, float projectionScale,
+            FramingAxisAlignment alignment)
         {
+            if (alignment == FramingAxisAlignment.CenterOnReferencePoint)
+            {
+                var ndcCenter = 0.5f * (ndcMin + ndcMax);
+                return Math.Max(
+                    edgeConstraintMin / ((ndcMin - ndcCenter) * projectionScale),
+                    edgeConstraintMax / ((ndcMax - ndcCenter) * projectionScale));
+            }
+
             return (edgeConstraintMax - edgeConstraintMin) / ((ndcMax - ndcMin) * projectionScale);
         }
 
@@ -235,16 +244,20 @@ namespace CinematicCameraToolkit
         {
             switch (alignment)
             {
+                case FramingAxisAlignment.CenterBetweenEdgeAnchors:
+                    var minEdgeShift = edgeConstraintMin - ndcMin * projectionScale * framingDistance;
+                    var maxEdgeShift = edgeConstraintMax - ndcMax * projectionScale * framingDistance;
+                    return 0.5f * (minEdgeShift + maxEdgeShift);
+
                 case FramingAxisAlignment.AnchorToMinEdge:
                     return edgeConstraintMin - ndcMin * projectionScale * framingDistance;
 
                 case FramingAxisAlignment.AnchorToMaxEdge:
                     return edgeConstraintMax - ndcMax * projectionScale * framingDistance;
 
-                case FramingAxisAlignment.Balanced:
-                    var minEdgeShift = edgeConstraintMin - ndcMin * projectionScale * framingDistance;
-                    var maxEdgeShift = edgeConstraintMax - ndcMax * projectionScale * framingDistance;
-                    return 0.5f * (minEdgeShift + maxEdgeShift);
+                case FramingAxisAlignment.CenterOnReferencePoint:
+                    var ndcCenter = 0.5f * (ndcMin + ndcMax);
+                    return -ndcCenter * projectionScale * framingDistance;
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(alignment), alignment,

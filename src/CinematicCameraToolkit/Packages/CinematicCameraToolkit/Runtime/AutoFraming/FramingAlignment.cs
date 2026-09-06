@@ -31,8 +31,24 @@ namespace CinematicCameraToolkit
 
     public enum FramingAxisAlignment
     {
-        Balanced = 0,
+        /// <summary>
+        /// Centers the camera shift between the two edge-anchored positions.
+        /// </summary>
+        CenterBetweenEdgeAnchors = 0,
+
+        /// <summary>
+        /// Anchors the subject's minimum edge to the framing bounds' minimum edge.
+        /// </summary>
         AnchorToMinEdge = 1,
+
+        /// <summary>
+        /// Anchors the subject's maximum edge to the framing bounds' maximum edge.
+        /// </summary>
         AnchorToMaxEdge = 2,
+
+        /// <summary>
+        /// Keeps the reference point at the center of the framing bounds on this axis.
+        /// </summary>
+        CenterOnReferencePoint = 3,
     }
 }

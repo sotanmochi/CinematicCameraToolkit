@@ -19,8 +19,8 @@ namespace CinematicCameraToolkit.Cinemachine
         [SerializeField] [Range(0f, 100f)] private float _marginTop = 10f;
 
         [Header("Alignment")]
-        [SerializeField] private FramingAxisAlignment _horizontalAlignment = FramingAxisAlignment.Balanced;
-        [SerializeField] private FramingAxisAlignment _verticalAlignment = FramingAxisAlignment.Balanced;
+        [SerializeField] private FramingAxisAlignment _horizontalAlignment = FramingAxisAlignment.CenterBetweenEdgeAnchors;
+        [SerializeField] private FramingAxisAlignment _verticalAlignment = FramingAxisAlignment.CenterBetweenEdgeAnchors;
 
         [Header("Smoothing")]
         [SerializeField] private FramingSmoothingPreset _preset = FramingSmoothingPreset.Standard;
