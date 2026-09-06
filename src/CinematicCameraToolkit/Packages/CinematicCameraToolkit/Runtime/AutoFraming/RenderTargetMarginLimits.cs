@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CinematicCameraToolkit.AutoFraming
+namespace CinematicCameraToolkit
 {
     /// <summary>
     /// Keeps a percentage-based <see cref="RenderTargetMargin"/> usable: opposing edges must

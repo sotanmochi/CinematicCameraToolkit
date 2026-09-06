@@ -1,5 +1,4 @@
 using System;
-using CinematicCameraToolkit.AutoFraming;
 using UnityEngine;
 
 namespace CinematicCameraToolkit.Timeline

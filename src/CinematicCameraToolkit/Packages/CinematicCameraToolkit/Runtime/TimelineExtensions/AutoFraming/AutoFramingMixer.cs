@@ -1,4 +1,3 @@
-using CinematicCameraToolkit.AutoFraming;
 using CinematicCameraToolkit.Cinemachine;
 using UnityEngine.Playables;
 

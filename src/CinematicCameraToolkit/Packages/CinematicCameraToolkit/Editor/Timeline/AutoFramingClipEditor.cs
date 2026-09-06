@@ -1,4 +1,3 @@
-using CinematicCameraToolkit.AutoFraming;
 using UnityEditor;
 using UnityEngine;
 

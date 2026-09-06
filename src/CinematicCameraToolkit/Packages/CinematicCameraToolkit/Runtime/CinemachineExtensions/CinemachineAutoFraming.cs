@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using CinematicCameraToolkit.AutoFraming;
 using Unity.Cinemachine;
 using UnityEngine;
 

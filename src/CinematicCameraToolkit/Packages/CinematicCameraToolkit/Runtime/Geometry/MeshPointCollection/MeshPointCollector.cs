@@ -5,25 +5,25 @@ using UnityEngine;
 using Unity.Profiling;
 #endif
 
-namespace CinematicCameraToolkit.AutoFraming
+namespace CinematicCameraToolkit
 {
     public sealed class MeshPointCollector : IMeshPointCollector
     {
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
         private static readonly ProfilerMarker WriteWorldSpacePointsMarker =
-            new(ProfilerCategory.Scripts, "CCT.AutoFraming.MeshPointCollector.WriteWorldSpacePoints");
+            new(ProfilerCategory.Scripts, "CCT.Geometry.MeshPointCollector.WriteWorldSpacePoints");
 
         private static readonly ProfilerMarker BakeSkinnedMeshMarker =
-            new(ProfilerCategory.Scripts, "CCT.AutoFraming.MeshPointCollector.BakeSkinnedMesh");
+            new(ProfilerCategory.Scripts, "CCT.Geometry.MeshPointCollector.BakeSkinnedMesh");
 
         private static readonly ProfilerMarker ReadVerticesMarker =
-            new(ProfilerCategory.Scripts, "CCT.AutoFraming.MeshPointCollector.ReadVertices");
+            new(ProfilerCategory.Scripts, "CCT.Geometry.MeshPointCollector.ReadVertices");
 
         private static readonly ProfilerMarker TransformVerticesMarker =
-            new(ProfilerCategory.Scripts, "CCT.AutoFraming.MeshPointCollector.TransformVertices");
+            new(ProfilerCategory.Scripts, "CCT.Geometry.MeshPointCollector.TransformVertices");
 
         private static readonly ProfilerMarker ResizeBufferMarker =
-            new(ProfilerCategory.Scripts, "CCT.AutoFraming.MeshPointCollector.ResizeBuffer");
+            new(ProfilerCategory.Scripts, "CCT.Geometry.MeshPointCollector.ResizeBuffer");
 #endif
 
         private NativeArray<Vector3> _localVertexBuffer;

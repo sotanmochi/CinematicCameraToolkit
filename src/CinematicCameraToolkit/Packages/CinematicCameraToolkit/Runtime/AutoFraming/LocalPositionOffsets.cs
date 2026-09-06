@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace CinematicCameraToolkit.AutoFraming
+namespace CinematicCameraToolkit
 {
     public readonly struct LocalPositionOffsets : IEquatable<LocalPositionOffsets>
     {

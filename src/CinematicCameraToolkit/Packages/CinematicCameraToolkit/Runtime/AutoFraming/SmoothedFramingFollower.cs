@@ -4,7 +4,7 @@ using UnityEngine;
 using Unity.Profiling;
 #endif
 
-namespace CinematicCameraToolkit.AutoFraming
+namespace CinematicCameraToolkit
 {
     [AddComponentMenu("Cinematic Camera Toolkit/Smoothed Framing Follower")]
     public sealed class SmoothedFramingFollower : MonoBehaviour

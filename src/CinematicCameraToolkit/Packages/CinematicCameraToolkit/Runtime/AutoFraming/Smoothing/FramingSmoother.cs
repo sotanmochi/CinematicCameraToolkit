@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CinematicCameraToolkit.AutoFraming
+namespace CinematicCameraToolkit
 {
     /// <summary>
     /// Smooths the inputs of the auto-framing camera solution: the reference point position
