@@ -1,0 +1,34 @@
+{
+    "name": "CinematicCameraToolkit.TimelineExtensions.Editor",
+    "rootNamespace": "CinematicCameraToolkit.Timeline.Editor",
+    "references": [
+        "CinematicCameraToolkit",
+        "CinematicCameraToolkit.TimelineExtensions",
+        "Unity.Timeline"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "CCT_CINEMACHINE_3",
+        "CCT_TIMELINE"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.cinemachine",
+            "expression": "3.0.0",
+            "define": "CCT_CINEMACHINE_3"
+        },
+        {
+            "name": "com.unity.timeline",
+            "expression": "1.7.0",
+            "define": "CCT_TIMELINE"
+        }
+    ],
+    "noEngineReferences": false
+}
