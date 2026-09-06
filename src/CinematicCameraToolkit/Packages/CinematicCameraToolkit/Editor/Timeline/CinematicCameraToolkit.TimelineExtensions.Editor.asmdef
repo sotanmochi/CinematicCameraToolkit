@@ -3,6 +3,7 @@
     "rootNamespace": "CinematicCameraToolkit.Timeline.Editor",
     "references": [
         "CinematicCameraToolkit",
+        "CinematicCameraToolkit.Editor",
         "CinematicCameraToolkit.TimelineExtensions",
         "Unity.Timeline"
     ],

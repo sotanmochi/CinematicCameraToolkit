@@ -23,10 +23,9 @@ namespace CinematicCameraToolkit.Cinemachine
         [SerializeField] private FramingAxisAlignment _verticalAlignment = FramingAxisAlignment.Balanced;
 
         [Header("Smoothing")]
-        [SerializeField] private FramingSmoothingSettings _smoothingSettings = FramingSmoothingSettings.CreateDefault();
-
-        [Header("Preset")]
         [SerializeField] private FramingSmoothingPreset _preset = FramingSmoothingPreset.Standard;
+
+        [SerializeField] private FramingSmoothingSettings _smoothingSettings = FramingSmoothingSettings.CreateDefault();
 
         [SerializeField] [HideInInspector]
         private FramingSmoothingPreset _appliedPreset = FramingSmoothingPreset.Standard;
